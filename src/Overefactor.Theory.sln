@@ -1,8 +1,34 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Overefactor.Theory.FormalLanguage", "Overefactor.Theory.FormalLanguage\Overefactor.Theory.FormalLanguage.csproj", "{28E16AD4-6C49-4AAA-95EC-DB01E451C564}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{7A1EAB45-BA5A-4235-86FA-7516B5EAB5A1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Overefactor.Scratchpad", "Overefactor.Scratchpad\Overefactor.Scratchpad.csproj", "{568856D9-0314-4C02-9B4A-85E5A7384281}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Overefactor.Math.Set", "Overefactor.Math.Set\Overefactor.Math.Set.csproj", "{1DD6E80F-36E9-4556-9FCC-51941FEC1DE3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{28E16AD4-6C49-4AAA-95EC-DB01E451C564}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{28E16AD4-6C49-4AAA-95EC-DB01E451C564}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{28E16AD4-6C49-4AAA-95EC-DB01E451C564}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{28E16AD4-6C49-4AAA-95EC-DB01E451C564}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7A1EAB45-BA5A-4235-86FA-7516B5EAB5A1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7A1EAB45-BA5A-4235-86FA-7516B5EAB5A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7A1EAB45-BA5A-4235-86FA-7516B5EAB5A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7A1EAB45-BA5A-4235-86FA-7516B5EAB5A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{568856D9-0314-4C02-9B4A-85E5A7384281}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{568856D9-0314-4C02-9B4A-85E5A7384281}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{568856D9-0314-4C02-9B4A-85E5A7384281}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{568856D9-0314-4C02-9B4A-85E5A7384281}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1DD6E80F-36E9-4556-9FCC-51941FEC1DE3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1DD6E80F-36E9-4556-9FCC-51941FEC1DE3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1DD6E80F-36E9-4556-9FCC-51941FEC1DE3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1DD6E80F-36E9-4556-9FCC-51941FEC1DE3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
