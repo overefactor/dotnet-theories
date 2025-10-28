@@ -38,7 +38,7 @@ public class Program
         
         builder.AddRule("SFD -> kw-static identifier sp-open-paren PL sp-close-paren B eol");
         
-        builder.AddRule("PL -> identifier PR'").AddRule("PL -> ε")
+        builder.AddRule("PL -> identifier PR").AddRule("PL -> ε")
             .AddRule("PR -> PR' PR").AddRule("PR -> ε")
             .AddRule("PR' -> sp-comma identifier");
 
@@ -59,7 +59,7 @@ public class Program
             .AddRule("S' -> IS");
 
         builder.AddRule("DS -> kw-var identifier DS' eol")
-            .AddRule("DS' -> op-equal E")
+            .AddRule("DS' -> op-assign E")
             .AddRule("DS' -> ε");
 
         builder.AddRule("ES -> E eol");
@@ -80,13 +80,9 @@ public class Program
             .AddRule("IS' -> ε");
 
         builder.AddRule("E -> identifier")
-            .AddRule("E -> op-minus")
-            .AddRule("E -> op-not")
-            .AddRule("E -> lit-null")
-            .AddRule("E -> lit-whole")
-            .AddRule("E -> lit-decimal")
-            .AddRule("E -> lit-boolean")
-            .AddRule("E -> lit-string");
+            .AddRule("E -> lit-string")
+            .AddRule("E -> op-assign")
+            .AddRule("E -> expression");
         
 
         var cfg = builder.Build(CfgFactory.Default);
@@ -114,6 +110,26 @@ public class Program
         Console.WriteLine(new string('=', 50));
         Console.WriteLine("Id;Rule");
         foreach (var pair in indexToRule) Console.WriteLine($"{pair.Key};{pair.Value}");
+        Console.WriteLine(new string('=', 50));
+
+        Console.WriteLine();
+        
+        Console.WriteLine(new string('=', 50));
+        
+        Console.WriteLine("{");
+        for (var i = 0; i < indexToTerminal.Count; i++) 
+            Console.WriteLine($"TERMINAL_{indexToTerminal[i + 1].Name.ToUpper().Replace('-', '_')},");
+        Console.WriteLine("}");        
+        
+        Console.WriteLine(new string('=', 50));
+            
+        
+        Console.WriteLine("{");
+        for (var i = 0; i < indexToNonTerminal.Count; i++) 
+            Console.WriteLine($"NON_TERMINAL_{indexToNonTerminal[i + 1].Name.ToUpper().Replace("'", "_I").Replace('-', '_')},");
+        Console.WriteLine("}");      
+        
+
         Console.WriteLine(new string('=', 50));
         
 
@@ -146,34 +162,30 @@ public class Program
         Console.WriteLine();
         Console.WriteLine(new string('=', 50));
         
-        Console.Write("\" \"");
-        for (var i = 0; i < indexToTerminal.Count; i++)
-        {
-            var terminal = indexToTerminal[i + 1];
-            Console.Write($";{terminal}");
-        }
-        Console.WriteLine();
-
+        
+        
+        Console.WriteLine("{");
         for (var i = 0; i < table.GetLength(0); i++)
         {
-            var nonTerminal = indexToNonTerminal[i + 1];
-
-            Console.Write(nonTerminal);
+            Console.Write("  { ");
+            
             for (var j = 0; j < table.GetLength(1); j++)
             {
                 var value = table[i, j];
                 
-                Console.Write(';');
+                if (j > 0) Console.Write(',');
+
                 Console.Write(value switch
                 {
-                    0 => "\" \"",
+                    0 => " 0",
                     < 0 => "ERR",
-                    _ => value.ToString()
+                    _ => value.ToString().PadLeft(2)
                 });
             }
-            Console.WriteLine();
+
+            Console.WriteLine(" },");
         }
-        
+        Console.WriteLine("}");
         
         
         Console.WriteLine(new string('=', 50));
@@ -185,8 +197,7 @@ public class Program
 
     private static void CreateTerminals(CfgBuilder builder)
     {
-        builder.AddTerminal("eof")
-            .AddTerminal("eol");
+        builder.AddTerminal("eol");
 
         builder.AddTerminal("identifier");
 
@@ -214,15 +225,10 @@ public class Program
             .AddTerminal("sp-close-brace")
             .AddTerminal("sp-comma");
 
-        builder.AddTerminal("lit-null")
-            .AddTerminal("lit-whole")
-            .AddTerminal("lit-decimal")
-            .AddTerminal("lit-boolean")
-            .AddTerminal("lit-string");
+        builder.AddTerminal("lit-string");
 
-        builder.AddTerminal("op-minus")
-            .AddTerminal("op-not")
-            .AddTerminal("op-equal");
-
+        builder.AddTerminal("op-assign");
+        
+        builder.AddTerminal("expression");
     }
 }
